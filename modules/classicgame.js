@@ -1,10 +1,10 @@
 import watch from './inputeventwatcher'
+import LoremHipsum from 'lorem-hipsum'
 import Timr from 'timrjs'
 import Field from './field'
 import Indext from './indext'
 import * as keycoder from 'keycoder'
 require('../styles/classicgamestyle.css')
-require('../font-awesome/css/font-awesome.min.css')
 
 export default class {
   constructor () {
@@ -13,16 +13,16 @@ export default class {
     this.running = false
   }
   create (text) {
-
-    this.message = text 
+    this.message = text
 
     this.parent = document.createElement('div')
     this.parent.id = 'classic-app'
     this.parent.className = 'border'
-    
+
     this.error = document.createElement('p')
     this.error.id = 'classic-error'
     this.error.className = 'error white-border'
+    this.error.style.display = 'none'
 
     this.playButton = document.createElement('i')
     this.playButton.id = 'classic-play-button'
@@ -35,10 +35,10 @@ export default class {
     this.repeatButton.className = 'underline-magic play-button fa fa-repeat'
     this.repeatButton.setAttribute('aria-hidden', 'true')
     this.repeatButton.setAttribute('title', 'Restart')
-    
+
     this.time = document.createElement('p')
     this.time.id = 'classic-clock'
-    this.time.textContent = '0:00'
+    this.time.textContent = '00:00'
 
     this.prompt = document.createElement('p')
     this.prompt.id = 'classic-go'
@@ -49,9 +49,9 @@ export default class {
 
     this.textBlock = document.createElement('div')
     this.textBlock.id = 'classic-text-block'
-    
+
     this.errorField = new Field(this.error)
-    this.buildParent() 
+    this.buildParent()
     this.addListeners()
     return this.parent
   }
@@ -90,6 +90,9 @@ export default class {
     this.message = text
     this.untyped.textContent = text
   }
+  makeText () {
+    return LoremHipsum().replace(/\s+/g, ' ')
+  }
   setFlash (bool) {
     if (bool) {
       this.backgroundInterval = setInterval(() => {
@@ -103,7 +106,6 @@ export default class {
   stop () {
     this.running = false
     this.timer.stop()
-    this.ended = true
     this.playButton.classList.remove('fa-pause')
     this.playButton.classList.add('fa-play')
     this.errorField.el.textContent = ''
@@ -111,6 +113,7 @@ export default class {
     // By removing the 'tabindex' property, the untyped element can not have typing focus
     if (this.untyped.hasAttribute('tabindex')) {
       this.untyped.removeAttribute('tabindex')
+      this.untyped.blur()
     }
   }
   pause () {
@@ -124,6 +127,9 @@ export default class {
     }
   }
   start () {
+    if (this.error.style.display !== 'none') {
+      this.error.style.display = 'none'
+    }
     this.prompt.textContent = 'Type!'
     this.playButton.classList.remove('fa-play')
     this.playButton.classList.add('fa-pause')
@@ -136,7 +142,7 @@ export default class {
     this.untyped.focus()
   }
   resume () {
-    this.prompt.textContent = 'Go'
+    this.prompt.textContent = 'Type!'
     this.playButton.classList.remove('fa-play')
     this.playButton.classList.add('fa-pause')
     this.timer.start()
@@ -148,46 +154,60 @@ export default class {
     this.start()
   }
   addListeners (onEnd) {
+    window.addEventListener('keyup', (e) => {
+      if (!this.running && e.key === 'Enter') {
+        this.setText(this.makeText())
+        this.restart()
+      }
+    })
     this.timer.ticker((formattedTime, percentDone) => {
       this.currentTime = percentDone
       this.time.textContent = formattedTime
-      this.prompt.textContent = Math.round((this.typed.textContent.split(' ').length*60) /this.currentTime)+ ' WPM'
-      console.log('time')
+      this.prompt.textContent = this.wpm() + ' WPM'
     })
     watch(this.untyped, (e) => {
       // Clear the flashing background once typing starts
       this.setFlash(false)
       let char = keycoder.eventToCharacter(e)
-      console.log(char)
+      if (!char) {
+        return
+      }
       if (char === this.index.currentChar() && this.errorField.empty()) {
-        console.log('correct')
+        if (this.error.style.display !== 'none') {
+          this.error.style.display = 'none'
+        }
         this.index.increase()
         // If we have reached the end
         if (this.index.index === this.message.length) {
-            console.log( this.message.split(' ').length )
-            this.prompt.textContent = 'Done! ' + Math.round((this.message.split(' ').length*60) /this.currentTime)+ ' WPM'
+          this.prompt.textContent = 'Done! ' + this.wpm() + ' WPM'
           this.stop()
-          console.log('end')
           return
         }
       } else {
+        if (this.error.style.display !== 'block') {
+          this.error.style.display = 'block'
+        }
         this.text.classList.add('error')
         if (char === ' ') {
           char = '·'
         }
         this.errorField.addChar(char)
-        console.log('incorrect')
       }
-
     }, (e) => {
       this.deleteLetter()
     })
+  }
+  wpm () {
+    return Math.round((this.typed.textContent.split(' ').length * 60) / this.currentTime)
   }
   deleteLetter () {
     // Delete char from error only if it has letters in it
     if (!this.errorField.empty()) {
       this.errorField.removeChar()
       if (this.errorField.empty()) {
+        if (this.error.style.display !== 'none') {
+          this.error.style.display = 'none'
+        }
         this.text.classList.remove('error')
         this.text.classList.add('fine')
       }

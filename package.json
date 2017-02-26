@@ -5,13 +5,13 @@
   "version": "0.0.0",
   "author": "Jack DuPlessis",
   "dependencies": {
+    "font-awesome": "^4.7.0",
+    "font-awesome-webpack": "0.0.4"
   },
   "scripts": {
-    "start": "webpack-dev-server ./main  --host=`hostname -I` --hot --inline --optimize-minimize",
-    "deploy": ""
+    "start": "webpack-dev-server ./main --port 80  --host=`hostname -I` --hot --inline"
   },
   "devDependencies": {
-    "rmodal": "latest",
     "lorem-hipsum": ">=0.1.7",
     "url-loader": "^0.5.x",
     "file-loader": "^0.9.x",

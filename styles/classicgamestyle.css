@@ -3,10 +3,12 @@
   margin-left: -5px;
   font-style: italic;
 }
+
 #classic-question-circle:hover {
   color: #1F75FE;
   cursor: pointer;
 }
+
 #classic-wrapper {
   font-size: 15pt important!;
   padding: 2%;
@@ -14,55 +16,66 @@
   flex-wrap: wrap;
   flex-direction: row;
 }
+
 #classic-header {
   font-size: 18pt;
   margin: 2px;
   margin-bottom: 0px;
   padding-bottom: 0px;
 }
+
 #classic-instruct-header {
   font-size: 15pt;
   margin: 3px;
   margin-top: 2px;
   margin-bottom: 2px;
 }
+
 #classic-instructions {
   padding: 5px;
   font-size: 14pt;
   margin-top: 2px;
   margin-bottom: 2px;
 }
+
 #game-warn {
   font-weight: 700;
   font-size: 10pt;
 }
+
 #classic-instructions-box {
   margin: 3px 0 7px 0;
 }
+
 #classic-typed {
   font-weight: 700;
 }
+
 #classic-error {
+  display: flex;
   flex: 0 1 100%;
+  padding: 5px;
   margin: 10px;
   margin-top: 0px;
   font-size: 14pt;
   font-weight: 700;
   background-color: #ff9994;
-  line-height: 170%;
 }
+
 #classic-status {
   font-size: 14pt;
   flex: 0 1 100%;
   display: flex;
   font-weight: 700;
 }
+
 #classic-app {
   display: flex;
   flex-direction: row;
   font-size: 11pt;
   flex-wrap: wrap;
 }
+
 #classic-go {
   font-size: inherit;
   flex: 9;
@@ -72,10 +85,12 @@
   height: 1px;
   margin-bottom: 9px;
 }
+
 .play-button:hover {
   text-decoration: none;
   cursor: pointer;
 }
+
 .underline-magic:after {
   display: block;
   content: '';
@@ -84,9 +99,11 @@
   transition: transform 250ms ease-in-out;
   transform-origin: 0% 100%;
 }
+
 .underline-magic:hover:after {
   transform: scaleX(1);
 }
+
 .play-button {
   flex: .45;
   margin: 10px;
@@ -97,14 +114,17 @@
   padding-bottom: 1px;
   padding-left: 1px;
 }
+
 #classic-play-button {
   margin-right: 11px;
   padding-right: 0;
 }
+
 #classic-repeat-button {
   margin-left: 0;
   padding-left: 0;
 }
+
 #classic-button {
   flex: 1.75;
   border-color: lightgrey;
@@ -114,22 +134,25 @@
   margin: 10px;
   font-size: inherit;
 }
+
 #classic-button::selection {
   background: #FFF;
 }
+
 #classic-button:active {
   border-color: #e6e6e6;
-
-
-  -webkit-user-select: none; /* Chrome/Safari */        
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+ */
-
+  -webkit-user-select: none;
+  /* Chrome/Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+ */
   /* Rules below not implemented in browsers yet */
   -o-user-select: none;
   user-select: none;
   outline: 0;
 }
+
 #classic-clock {
   flex: 9;
   padding: 5px;
@@ -141,31 +164,38 @@
   margin-top: 20px;
   margin-bottom: 0;
 }
+
 #classic-text-block {
   font-size: 16pt;
   margin: 10px;
   margin-top: 4px;
   margin-bottom: 5px;
   width: 100%;
-} 
+}
+
 #classic-text {
   margin-top: 0;
   margin-bottom: 5px;
   padding: 5px;
   font-size: inherit;
 }
+
 .fine {
   background: #a0e7a0;
-} 
+}
+
 .error {
   background: #ff9994;
 }
+
 .go {
   font-weight: 700;
 }
+
 .blue {
   background: #aec6cf;
 }
+
 @media screen and (max-device-width: 500px) {
   #classic-instructions-block {
     height: 60pt;

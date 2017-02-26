@@ -1,9 +1,7 @@
 require('./styles/keyappstyle.css')
+require('font-awesome/css/font-awesome.css')
 
-import Timr from 'timrjs'
-import watch from './modules/inputeventwatcher'
 import ClassicGame from './modules/classicgame'
-import LoremHipsum from 'lorem-hipsum'
 
 // ClassicGame variables and setup
 let classicGame = new ClassicGame()
@@ -16,7 +14,7 @@ let restartButton = document.querySelector('#classic-repeat-button')
 // Click listeners
 playButton.addEventListener('click', (e) => {
   if (!classicGame.running) {
-    classicGame.setText(LoremHipsum())
+    classicGame.setText(classicGame.makeText())
     classicGame.start()
     return
   }
@@ -27,7 +25,7 @@ playButton.addEventListener('click', (e) => {
   }
 })
 restartButton.addEventListener('click', (e) => {
-  classicGame.setText(LoremHipsum())
+  classicGame.setText(classicGame.makeText())
   classicGame.restart()
 })
 
@@ -40,9 +38,9 @@ close.addEventListener('click', (ev) => {
 })
 clscBtn.addEventListener('click', (ev) => {
   modal.style.display = 'block'
-}, false);
+}, false)
 window.addEventListener('click', (ev) => {
-  if (ev.target == modal) {
-    modal.style.display = "none";
+  if (ev.target === modal) {
+    modal.style.display = 'none'
   }
 })

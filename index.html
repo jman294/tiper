@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Tiper</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
 
 
   <div id="info-bar" class="">
-    <div id="brand-box" ><a href="/" class="underline-magic">TIPER</a></div>
-    <p id="about-paragraph"> 
+    <div id="brand-box"><a href="/" class="underline-magic">TIPER</a></div>
+    <p id="about-paragraph">
       A website for typing. Simple as that. Visit the Github <a target="_blank" href="https://github.com/tiper-game/tiper-game.github.io" class="reg-link">here</a>.
     </p>
-    <!-- <section id="donation"> --> 
+    <!-- <section id="donation"> -->
     <!--   <p id="donation-paragraph"> -->
     <!--     If you like this website, consider donating here: -->
     <!--   </p> -->
@@ -20,9 +22,15 @@
     <!-- </section> -->
     <div id="by">
       <ul class="share-buttons hidden-mobile">
-          <li><a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Ftiper-game.github.io&text=Check%20out%20tiper-game.github.io" target="_blank" title="Tweet" ><img alt="Tweet" src="images/simple_icons_black/Twitter.png"></a></li>
-            <li><a href="https://plus.google.com/share?url=http%3A%2F%2Ftiper-game.github.io" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img alt="Share on Google+" src="images/simple_icons_black/Google+.png"></a></li>
-              <li><a href="mailto:jduplessis294@gmail.com?subject=Tiper" target="_blank" title="Send email" onclick="window.open('mailto:jduplessis294@gmail.com?subject=' + encodeURIComponent(document.title)); return false;"><img alt="Send email" src="images/simple_icons_black/Email.png"></a></li>
+        <li>
+          <a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Ftiper-game.github.io&text=Check%20out%20tiper-game.github.io" target="_blank" title="Tweet"><img alt="Tweet" src="images/simple_icons_black/Twitter.png"></a>
+        </li>
+        <li>
+          <a href="https://plus.google.com/share?url=http%3A%2F%2Ftiper-game.github.io" target="_blank" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=' + encodeURIComponent(document.URL)); return false;"><img alt="Share on Google+" src="images/simple_icons_black/Google+.png"></a>
+        </li>
+        <li>
+          <a href="mailto:jduplessis294@gmail.com?subject=Tiper" target="_blank" title="Send email" onclick="window.open('mailto:jduplessis294@gmail.com?subject=' + encodeURIComponent(document.title)); return false;"><img alt="Send email" src="images/simple_icons_black/Email.png"></a>
+        </li>
       </ul>
     </div>
   </div>
@@ -30,31 +38,31 @@
   <div id="main">
     <section id="page" class="border">
 
-    <div id="content">
-      <div id="classic-wrapper" class="border">
-        <h4 id="classic-header" class="underline-magic" ><a href="#classic-link">CLASSIC</a></h4>
-        <div id="classic-instructions-box" class="border">
-          <h5 id="classic-instruct-header">
-            To Play:
-          </h5>
-          <div id="classic-instructions">
-            Click the play button below to start the game. Start typing immediately, and press the restart button at any time. If you make an error, the box will turn red, but backspacing will clear the error. When you type the full text, the timer will stop and you can play again.
-            <em id="game-warn">This game requires a physical keyboard</em>
-            <i id="classic-question-circle" class="fa fa-info-circle" aria-hidden="true"></i>
-            <div id="classic-info-modal" class=" modal">
-              <div class="modal-content border">
-                <span class="close">&times;</span>
-                This game makes use of keyboard focus on an element with the <code>tabindex</code> attribute. Unfortunately, on a phone or other device without a physical keyboard, the virtual keyboard will not pop up for you to play the game with when you start it.
-            
+      <div id="content">
+        <div id="classic-wrapper" class="border">
+          <h4 id="classic-header" class="underline-magic"><a href="#classic-link">CLASSIC</a></h4>
+          <div id="classic-instructions-box" class="border">
+            <h5 id="classic-instruct-header">
+              To Play:
+            </h5>
+            <div id="classic-instructions">
+              Click the play button below to start the game. Start typing immediately, and press the restart button at any time. If you make an error, the box will turn red, but backspacing will clear the error. When you type the full text, the timer will stop and you can play again.
+              <em id="game-warn">This game requires a physical keyboard</em>
+              <i id="classic-question-circle" class="fa fa-info-circle" aria-hidden="true"></i>
+              <div id="classic-info-modal" class=" modal">
+                <div class="modal-content border">
+                  <span class="close">&times;</span> This game makes use of keyboard focus on an element with the <code>tabindex</code> attribute. Unfortunately, on a phone or other device without a physical keyboard, the virtual keyboard will not pop up for you to play the game with when you start it.
+
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
     </section>
   </div>
   <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
 </body>
+
 </html>

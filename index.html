@@ -4,10 +4,11 @@
 <head>
   <title>Tiper</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles/classicgamestyle.css"/>
+  <link rel="stylesheet" href="styles/tiper.css"/>
 </head>
 
 <body>
-
 
   <div id="info-bar" class="">
     <div id="brand-box"><a href="/tiper" class="underline-magic">TIPER</a></div>
@@ -30,33 +31,31 @@
   </div>
 
   <div id="main">
-    <section id="page" class="border">
-
+    <div id="page" class="border">
       <div id="content">
         <div id="classic-wrapper" class="border">
-          <h4 id="classic-header" class="underline-magic"><a href="#classic-link">CLASSIC</a></h4>
-          <div id="classic-instructions-box" class="border">
-            <h5 id="classic-instruct-header">
+          <h2 class="underline-magic">
+            <a href="#classic-link">CLASSIC</a>
+          </h2>
+          <div id="classic-instructions" class="border">
+            <h3>
               To Play:
-            </h5>
-            <div id="classic-instructions">
+            </h3>
+            <p>
               Click the play button below to start the game. Start typing immediately, and press the restart button at any time. If you make an error, the box will turn red, but backspacing will clear the error. When you type the full text, the timer will stop and you can play again.
-              <em id="game-warn">This game requires a physical keyboard</em>
-              <i id="classic-question-circle" class="fa fa-info-circle" aria-hidden="true"></i>
-              <div id="classic-info-modal" class=" modal">
-                <div class="modal-content border">
-                  <span class="close">&times;</span> This game makes use of keyboard focus on an element with the <code>tabindex</code> attribute. Unfortunately, on a phone or other device without a physical keyboard, the virtual keyboard will not pop up for you to play the game with when you start it.
-
-                </div>
+              <em>This game requires a physical keyboard</em>
+              <i class="fa fa-info-circle" aria-hidden="true"></i>
+            </p>
+            <div id="classic-info-modal" class=" modal">
+              <div class="modal-content border">
+                <span class="close">&times;</span> This game makes use of keyboard focus on an element with the <code>tabindex</code> attribute. Unfortunately, on a phone or other device without a physical keyboard, the virtual keyboard will not pop up for you to play the game with when you start it.
               </div>
             </div>
           </div>
         </div>
       </div>
-
-    </section>
+    </div>
   </div>
   <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
 </body>
-
 </html>

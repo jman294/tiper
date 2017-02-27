@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Inconsolata:400,700');
+
+/*Universal selectors and whatnot*/
 ::selection {
   background: #a0e7a0;
   /* WebKit/Blink Browsers */
@@ -33,9 +35,7 @@ a {
   border-bottom: 3px solid #a0e7a0;
 }
 
-
 /* Large */
-
 #info-bar {
   overflow: scroll;
   width: 15%;
@@ -85,10 +85,6 @@ a {
   border-radius: 4px;
 }
 
-#donation {
-  padding: 5px;
-}
-
 .menu-item {
   text-align: left;
   padding: 4px 5px;
@@ -104,10 +100,6 @@ a {
   width: 100%;
   padding: 7px;
   font-size: 12pt;
-}
-
-.info-box:hover {
-  border-color: #a0e7a0;
 }
 
 .menu-hr {
@@ -218,7 +210,7 @@ ul.share-buttons .sr-only {
   #donation {
     display: none;
   }
-  #about-paragraph {
+  #info-bar p {
     margin-left: 6px;
   }
   #page {

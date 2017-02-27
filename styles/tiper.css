@@ -37,12 +37,12 @@ a {
 
 /* Large */
 #info-bar {
-  overflow: scroll;
-  width: 15%;
   position: fixed;
-  background: #Fff;
-  right: 85%;
+  background: #FFF;
+  right: 83.3%;
   top: 0;
+  bottom: 0;
+
   border-right: solid thin #e6e6e6;
   /* Safari 3-4, iOS 1-3.2, Android 1.6- */
   -webkit-border-radius: 4px;
@@ -50,7 +50,7 @@ a {
   -moz-border-radius: 4px;
   /* Opera 10.5, IE 9, Safari 5, Chrome, Firefox 4, iOS 4, Android 2.1+ */
   border-radius: 4px;
-  height: 100%;
+
   text-align: center;
   padding: 20px;
 }
@@ -95,45 +95,48 @@ a {
   font-size: 15pt;
 }
 
-.info-box {
-  line-height: 15px;
-  width: 100%;
-  padding: 7px;
-  font-size: 12pt;
-}
-
-.menu-hr {
-  display: none;
-  margin: 3px 5px;
-  width: 60%;
-  text-align: center;
-}
-
-#brand-box {
+#info-bar h1 {
+  margin: 0px;
+  display: inline-block;
   font-weight: 700;
   font-size: 20pt;
   text-align: center;
 }
 
-#main {
-  margin: 3%;
-  top: 30%;
-  width: 70%;
-  height: 100%;
+#info-bar h1:after {
+  display: inline-block;
+}
+
+#info-bar h1:after:hover {
+  display: inline-block;
 }
 
 #page {
-  position: absolute;
-  width: 60%;
-  top: 200px;
-  left: 66%;
-  bottom: 50px;
+  position: fixed;
+  width: 66%;
   height: 700px;
-  margin: -100px -80px 0 -40%;
-  margin-bottom: 50px;
-  background-color: #fff;
-  opacity: 1;
+
+  top: 16%;
+  left: 25%;
+  bottom: 50px;
+
+  /*margin: -100px -80px 0 -40%;*/
+  /*margin-bottom: 50px;*/
+  background-color: #FFF;
   padding: 10px;
+}
+
+.underline-magic:after {
+  display: block;
+  content: '';
+  border-bottom: 4px solid #c0e7a0;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+  transform-origin: 0% 100%;
+}
+
+.underline-magic:hover:after {
+  transform: scaleX(1);
 }
 
 .modal {
@@ -168,7 +171,6 @@ a {
 
 
 /* The Close Button */
-
 .close {
   color: #aaa;
   float: right;
@@ -205,7 +207,6 @@ ul.share-buttons .sr-only {
 
 
 /* Small screens */
-
 @media screen and (max-device-width: 640px) {
   #donation {
     display: none;

@@ -102,7 +102,7 @@
 }
 
 #classic-untyped:focus {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid green;
 }
 
 #classic-typed {
@@ -126,19 +126,6 @@
 
 .error {
   background: #ff9994;
-}
-
-.underline-magic:after {
-  display: block;
-  content: '';
-  border-bottom: 4px solid #c0e7a0;
-  transform: scaleX(0);
-  transition: transform 250ms ease-in-out;
-  transform-origin: 0% 100%;
-}
-
-.underline-magic:hover:after {
-  transform: scaleX(1);
 }
 
 @media screen and (max-device-width: 500px) {

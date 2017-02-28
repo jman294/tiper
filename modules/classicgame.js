@@ -1,4 +1,3 @@
-import axios from 'axios'
 import watch from './inputeventwatcher'
 import LoremHipsum from 'lorem-hipsum'
 import Timr from 'timrjs'

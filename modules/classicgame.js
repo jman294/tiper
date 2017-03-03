@@ -157,7 +157,7 @@ export default class {
 
     this.prompt.textContent = 'You finished with a speed of ' + this.wpm() + ' WPM and and accuracy of ' + this.accuracy() + '%'
     this.playButton.classList.remove('fa-pause')
-    if (this.wpm())  this.addRecentScore()
+    if (this.wpm() && this.typed.textContent.length === this.message.length) this.addRecentScore()
     this.playButton.classList.add('fa-play')
     this.timer.stop()
     this.text.classList.remove('error')
@@ -236,7 +236,6 @@ export default class {
       }
     }
     let wrongKey = () => {
-      console.log(this.errors)
       this.setErrorVisibile(true)
       this.text.classList.add('error')
       if (char === ' ') {

@@ -24,8 +24,11 @@ export default class {
     this.el.textContent = this.el.textContent.substr(1)
     this.safeRemove()
   }
-  empty () {
+  isEmpty () {
     return this.el.textContent.length <= 0
+  }
+  clear () {
+    this.el.textContent = ''
   }
   safeRemove () {
     if (!this.el.textContent.length) {

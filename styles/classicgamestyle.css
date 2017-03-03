@@ -14,6 +14,7 @@
 }
 
 #classic-instructions {
+  padding: 5px;
   margin: 3px 0 7px 0;
 }
 
@@ -38,7 +39,7 @@
 }
 
 #classic-instructions i.fa:hover {
-  color: #1F75FE;
+  color: #1f75fe;
   cursor: pointer;
 }
 
@@ -93,16 +94,13 @@
   margin: 10px;
   margin-top: 4px;
   margin-bottom: 10px;
-  line-height: 1em;
+  line-height: 18.5pt;
   padding: 5px;
 }
 
-#classic-untyped {
-  outline-style: none;
-}
-
 #classic-untyped:focus {
-  border-bottom: 1px solid green;
+  border-bottom: 2px solid #ffffff;
+  outline: none;
 }
 
 #classic-typed {
@@ -118,6 +116,20 @@
   font-size: 14pt;
   font-weight: 700;
   background-color: #ff9994;
+}
+
+table {
+  font-size: 16pt;
+  margin: 10px;
+  width: 100%;
+}
+
+table th {
+  text-align: center;
+}
+
+table td {
+  border-top: 1px solid #e6e6e6;
 }
 
 .fine {

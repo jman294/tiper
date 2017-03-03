@@ -5,6 +5,7 @@
   "version": "0.0.0",
   "author": "Jack DuPlessis",
   "dependencies": {
+    "classlist-polyfill": "^1.0.3",
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "0.0.4"
   },

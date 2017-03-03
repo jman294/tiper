@@ -113,15 +113,14 @@ a {
 
 #page {
   position: fixed;
-  width: 66%;
-  height: 700px;
+  height: 85%;
+  height: calc(100% - 50px);
 
-  top: 16%;
+  top: 50px;
   left: 25%;
+  right: 8%;
   bottom: 50px;
 
-  /*margin: -100px -80px 0 -40%;*/
-  /*margin-bottom: 50px;*/
   background-color: #FFF;
   padding: 10px;
 }
@@ -129,7 +128,7 @@ a {
 .underline-magic:after {
   display: block;
   content: '';
-  border-bottom: 4px solid #c0e7a0;
+  border-bottom: 4px solid #a0e7a0;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
   transform-origin: 0% 100%;

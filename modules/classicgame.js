@@ -1,9 +1,10 @@
-import watch from './inputeventwatcher'
 import LoremHipsum from 'lorem-hipsum'
 import Timr from 'timrjs'
 import Field from './field'
 import Indext from './indext'
 import * as keycoder from 'keycoder'
+
+require('classlist-polyfill')
 
 export default class {
   constructor () {
@@ -14,7 +15,8 @@ export default class {
 
     this.clock = 0
     this.timer = new Timr(0)
-    this.running = false
+    this.errors = 0
+
     this.state = this.FINISHED
   }
   create (text) {
@@ -62,6 +64,14 @@ export default class {
     this.untyped.id = 'classic-untyped'
     this.untyped.textContent = text
 
+    this.recentScoresTable = document.createElement('table')
+    this.recentScoresTable.className = 'border'
+
+    this.recentScoreHeader = document.createElement('tr')
+    let recentScoreTH = document.createElement('th')
+    recentScoreTH.textContent = 'Recent Scores'
+    this.recentScoreHeader.appendChild(recentScoreTH)
+
     this.index = new Indext(this.typed, this.untyped, text)
 
     this.errorField = new Field(this.error)
@@ -78,9 +88,12 @@ export default class {
     this.text.appendChild(this.typed)
     this.text.appendChild(this.untyped)
 
+    this.recentScoresTable.appendChild(this.recentScoreHeader)
+
     this.parent.appendChild(this.status)
     this.parent.appendChild(this.text)
     this.parent.appendChild(this.error)
+    this.parent.appendChild(this.recentScoresTable)
   }
 
   setText (text) {
@@ -92,12 +105,12 @@ export default class {
   }
 
   reset () {
-    console.log('resetting')
     if (this.state === this.RESET) {
       return
     }
     this.state = this.RESET
 
+    this.errors = 0
     this.setText(this.makeText())
     this.untyped.textContent = this.message
     this.typed.textContent = ''
@@ -108,7 +121,6 @@ export default class {
     this.prompt.textContent = 'Type!'
   }
   play () {
-    console.log('playing')
     if (!(this.state === this.PAUSED || this.state === this.RESET)) {
       return
     }
@@ -117,11 +129,11 @@ export default class {
     this.timer.start()
     this.playButton.classList.remove('fa-play')
     this.playButton.classList.add('fa-pause')
+    this.playButton.setAttribute('title', 'Pause')
     this.untyped.setAttribute('tabindex', '0')
     this.untyped.focus()
   }
   pause () {
-    console.log('paused')
     if (!(this.state === this.PLAYING)) {
       return
     }
@@ -130,6 +142,7 @@ export default class {
     this.prompt.textContent = 'Paused'
     this.playButton.classList.remove('fa-pause')
     this.playButton.classList.add('fa-play')
+    this.playButton.setAttribute('title', 'Play')
     this.timer.pause()
     // By removing the 'tabindex' property, the untyped element can not have typing focus
     if (this.untyped.hasAttribute('tabindex')) {
@@ -141,10 +154,10 @@ export default class {
       return
     }
     this.state = this.FINISHED
-    console.log('finished')
 
-    this.prompt.textContent = 'You finished with a speed of ' + this.wpm() + ' WPM!'
+    this.prompt.textContent = 'You finished with a speed of ' + this.wpm() + ' WPM and and accuracy of ' + this.accuracy() + '%'
     this.playButton.classList.remove('fa-pause')
+    if (this.wpm())  this.addRecentScore()
     this.playButton.classList.add('fa-play')
     this.timer.stop()
     this.text.classList.remove('error')
@@ -181,9 +194,13 @@ export default class {
     // Enter to start a new game
     window.addEventListener('keyup', (e) => {
       if (e.key === 'Enter') {
-        this.finish()
-        this.reset()
-        this.play()
+        if (this.state = this.PASUE) {
+          this.play()
+        } else {
+          this.finish()
+          this.reset()
+          this.play()
+        }
       }
     })
 
@@ -191,21 +208,25 @@ export default class {
     this.timer.ticker((formattedTime, percentDone) => {
       this.currentTime = percentDone
       this.time.textContent = formattedTime
-      this.prompt.textContent = this.wpm() + ' WPM'
+      this.prompt.textContent = this.wpm() + ' WPM ' + this.accuracy() + '% Accuracy'
     })
 
     // Key watcher
-    watch(this.untyped, (e) => {
-      this.keyPressed(keycoder.eventToCharacter(e))
-    }, (e) => {
-      this.deleteLetter()
+    this.untyped.addEventListener('keydown', (e) => {
+      e.preventDefault()
+      if (e.keyCode === 8 || e.keyCode === 46) {
+        this.deleteLetter()
+      } else {
+        this.keyPressed(keycoder.eventToCharacter(e))
+      }
     })
   }
   keyPressed (char) {
     if (!char) {
       return
     }
-    if (char === this.index.currentChar() && this.errorField.isEmpty()) {
+
+    let correctKey = () => {
       this.setErrorVisibile(false)
       this.index.increase()
       // If we have reached the end
@@ -213,17 +234,40 @@ export default class {
         this.finish()
         return
       }
-    } else {
+    }
+    let wrongKey = () => {
+      console.log(this.errors)
       this.setErrorVisibile(true)
       this.text.classList.add('error')
       if (char === ' ') {
         char = '·'
       }
+      this.errors += 1
       this.errorField.addChar(char)
+    }
+
+    if (char === this.index.currentChar() && this.errorField.isEmpty()) {
+      correctKey()
+    } else {
+      wrongKey()
     }
   }
   wpm () {
     return Math.round((this.typed.textContent.split(' ').length * 60) / this.currentTime)
+  }
+  accuracy () {
+    let acc = 100 - Math.round((this.errors/(this.typed.textContent.length+1))*100)
+    return acc < 0 ? 0 : acc
+  }
+  addRecentScore () {
+    let recentScore = document.createElement('tr')
+    let recentScoreTD = document.createElement('td')
+
+    recentScoreTD.innerHTML = '<b>' + this.wpm() + ' WPM ' + '</b>' + this.accuracy() + '% Accuracy'
+    recentScore.appendChild(recentScoreTD)
+
+    let firstScore = this.recentScoresTable.getElementsByTagName('tr')[1]
+    this.recentScoresTable.insertBefore(recentScore, firstScore)
   }
   setErrorVisibile (visible) {
     if (visible && this.error.style.display !== 'flex') {

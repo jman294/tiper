@@ -194,7 +194,7 @@ export default class {
     // Enter to start a new game
     window.addEventListener('keyup', (e) => {
       if (e.key === 'Enter') {
-        if (this.state = this.PASUE) {
+        if (this.state === this.PAUSED) {
           this.play()
         } else {
           this.finish()
@@ -256,7 +256,7 @@ export default class {
     return Math.round((this.typed.textContent.split(' ').length * 60) / this.currentTime)
   }
   accuracy () {
-    let acc = 100 - Math.round((this.errors/(this.typed.textContent.length+1))*100)
+    let acc = 100 - Math.round(this.errors/(this.typed.textContent.length+1)*100)
     return acc < 0 ? 0 : acc
   }
   addRecentScore () {

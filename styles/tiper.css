@@ -29,10 +29,8 @@ body {
 a {
   text-decoration: none;
   color: black;
-}
-
-.reg-link {
-  border-bottom: 3px solid #a0e7a0;
+  border-bottom: 2px solid #a0e7a0;
+  padding-bottom: 1px;
 }
 
 /* Large */
@@ -103,12 +101,16 @@ a {
   text-align: center;
 }
 
-#info-bar h1:after {
-  display: inline-block;
+#info-bar h1::after {
+  display: inline;
 }
 
-#info-bar h1:after:hover {
-  display: inline-block;
+#info-bar h1::after:hover {
+  display: inline;
+}
+
+#info-bar a[href="/tiper"] {
+  border-bottom: 0px;
 }
 
 #page {
@@ -125,10 +127,15 @@ a {
   padding: 10px;
 }
 
+.underline-magic {
+  border-bottom: 0px;
+  display: inline;
+}
+
 .underline-magic:after {
   display: block;
   content: '';
-  border-bottom: 4px solid #a0e7a0;
+  border-bottom: 2px solid #a0e7a0;
   transform: scaleX(0);
   transition: transform 250ms ease-in-out;
   transform-origin: 0% 100%;

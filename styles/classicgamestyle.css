@@ -121,16 +121,19 @@
 table {
   font-size: 16pt;
   margin: 10px;
-  width: 100%;
+  display: block;
+  /*width: 100%;*/
 }
 
 table th {
   text-align: center;
+  display: block;
 }
 
 table td {
   padding: 2px;
   border-top: 1px solid #e6e6e6;
+  width: 100%;
 }
 
 .fine {

@@ -221,13 +221,14 @@ ul.share-buttons .sr-only {
     margin-left: 6px;
   }
   #page {
-    position: absolute;
-    width: 80%;
-    top: 150px;
-    left: 50%;
-    bottom: 50%;
-    margin-bottom: 50px;
-    padding: 10px;
+    display: block;
+    overflow: scroll;
+    width: 100%;
+    /*top: 150px;*/
+    left: 0%;
+    /*bottom: 50%;*/
+    /*margin-bottom: 50px;*/
+    /*padding: 10px;*/
   }
   #info-bar {
     overflow: hidden;

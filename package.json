@@ -10,7 +10,7 @@
     "font-awesome-webpack": "0.0.4"
   },
   "scripts": {
-    "start": "webpack-dev-server ./index --port 80  --host=`hostname -I` --hot --inline"
+    "start": "webpack-dev-server ./index --host=`hostname -I` --hot --inline"
   },
   "devDependencies": {
     "lorem-hipsum": ">=0.1.7",
